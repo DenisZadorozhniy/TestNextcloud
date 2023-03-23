@@ -6,6 +6,6 @@ public class Configuration {
     }
 
     public static String getProperties(String key) {
-        return Environment.getCurrentData().getValue("/" + key).toString();
+        return Environment.getCurrentData("data.json").getValue("/" + key).toString();
     }
 }

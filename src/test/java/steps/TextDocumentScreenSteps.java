@@ -1,10 +1,9 @@
 package steps;
 
-import static utils.StringUtils.extractTextBeforeDotOrColon;
-
 import org.junit.jupiter.api.Assertions;
 
 import screens.TextDocumentScreen;
+import utils.StringUtils;
 
 public class TextDocumentScreenSteps {
     private final TextDocumentScreen textDocumentScreen;
@@ -15,7 +14,7 @@ public class TextDocumentScreenSteps {
 
     public void compareTitleDocument(String titleDocument) {
         if (textDocumentScreen.isTextDocumentScreenDisplayed()) {
-            Assertions.assertEquals(extractTextBeforeDotOrColon(textDocumentScreen.getTitleDocumentText()), titleDocument, "Titles must be the equal");
+            Assertions.assertEquals(StringUtils.extractTextBeforeDotOrColon(textDocumentScreen.getTitleDocumentText()), titleDocument, "Titles must be the equal");
         }
     }
 }

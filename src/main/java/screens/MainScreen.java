@@ -1,11 +1,9 @@
 package screens;
 
-import static utils.StringUtils.extractTextBeforeDotOrColon;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -17,6 +15,7 @@ import aquality.appium.mobile.screens.Screen;
 import screens.forms.AddFileForm;
 import screens.forms.DeletionWarningForm;
 import screens.forms.MoreMenuForm;
+import utils.StringUtils;
 
 public class MainScreen extends Screen {
 
@@ -24,6 +23,12 @@ public class MainScreen extends Screen {
     private final ILabel search;
     private final ILabel inputSearch;
     private final List<ITextBox> titleElementsInRecycler;
+    private final List<ITextBox> elementsInRecycler;
+    private final ILabel document;
+
+    private final AddFileForm addFileForm;
+    private final MoreMenuForm moreMenuForm;
+    private final DeletionWarningForm deletionWarningForm;
 
     public MainScreen() {
         super(By.id("com.nextcloud.client:id/list_root"), "Main Screen");
@@ -31,30 +36,44 @@ public class MainScreen extends Screen {
         this.search = getElementFactory().getLabel(By.id("com.nextcloud.client:id/search_text"), "Search");
         this.inputSearch = getElementFactory().getLabel(By.id("com.nextcloud.client:id/search_src_text"), "Input Search");
         this.titleElementsInRecycler = getElementFactory().findElements(By.xpath("//*[@resource-id='com.nextcloud.client:id/Filename']"), ITextBox.class);
+        this.elementsInRecycler = getElementFactory().findElements(By.xpath("//*[@resource-id='com.nextcloud.client:id/Filename']"), ITextBox.class);
+        this.document = getElementFactory().getLabel(By.xpath("//androidx.recyclerview." +
+                "widget.RecyclerView//android.widget.LinearLayout[%s]"), "Document");
+
+        this.addFileForm = new AddFileForm();
+        this.moreMenuForm = new MoreMenuForm();
+        this.deletionWarningForm = new DeletionWarningForm();
+    }
+
+    private ILabel getParticularDocumentLabel(int position) {
+        return getElementFactory().getLabel(By.xpath("//androidx.recyclerview." +
+                "widget.RecyclerView//android.widget.LinearLayout[" + position + "]"), "Document");
+    }
+
+    private IButton getMoreMenuButton(Integer number) {
+        return getElementFactory().getButton(By.xpath("(//android.widget.ImageView[@content-desc=\"More menu\"])[" + number + "]"), "More menu");
     }
 
     public AddFileForm getAddFileForm() {
-        return new AddFileForm();
+        return addFileForm;
     }
 
     public MoreMenuForm getMoreMenuForm() {
-        return new MoreMenuForm();
+        return moreMenuForm;
     }
 
     public DeletionWarningForm getDeletionWarningForm() {
-        return new DeletionWarningForm();
+        return deletionWarningForm;
     }
 
     public void clickAddFileButton() {
-        addFileButton.state().waitForClickable(Duration.ofSeconds(5));
         addFileButton.click();
     }
 
     public By getFilenameLocator(String titleDocument) {
-        List<ITextBox> elementsInRecycler = getElementFactory().findElements(By.xpath("//*[@resource-id='com.nextcloud.client:id/Filename']"), ITextBox.class);
         AtomicReference<ITextBox> doc = new AtomicReference<>(null);
         elementsInRecycler.forEach(el -> {
-            String text = extractTextBeforeDotOrColon(el.getText());
+            String text = StringUtils.extractTextBeforeDotOrColon(el.getText());
             if (text.equals(titleDocument)) {
                 doc.set(el);
             }
@@ -63,9 +82,7 @@ public class MainScreen extends Screen {
     }
 
     public void clickOnParticularDocument(Integer position) {
-        ILabel document = getElementFactory().getLabel(By.xpath("//androidx.recyclerview." +
-                "widget.RecyclerView//android.widget.LinearLayout[" + position + "]"), "Document");
-        document.click();
+        getParticularDocumentLabel(position).click();
     }
 
     public List<String> getTitleFromDocuments() {
@@ -80,8 +97,7 @@ public class MainScreen extends Screen {
     }
 
     public void clickMoreMenu(Integer number) {
-        IButton moreMenu = getElementFactory().getButton(By.xpath("(//android.widget.ImageView[@content-desc=\"More menu\"])[" + number + "]"), "More menu");
-        moreMenu.click();
+        getMoreMenuButton(number).click();
     }
 
     public void writeTextToSearch(String text) {

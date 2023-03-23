@@ -1,12 +1,11 @@
 package screens.forms;
 
-import static utils.SwipeUtils.makeSwipe;
-
 import org.openqa.selenium.By;
 
 import aquality.appium.mobile.actions.SwipeDirection;
 import aquality.appium.mobile.elements.interfaces.IButton;
 import aquality.appium.mobile.screens.Screen;
+import utils.SwipeUtils;
 
 public class MoreMenuForm extends Screen {
 
@@ -18,7 +17,7 @@ public class MoreMenuForm extends Screen {
     }
 
     public void clickDeleteButton(){
-        makeSwipe(deleteButton,SwipeDirection.DOWN);
+        SwipeUtils.makeSwipe(deleteButton,SwipeDirection.DOWN);
         deleteButton.click();
     }
 }

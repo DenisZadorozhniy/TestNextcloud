@@ -21,11 +21,10 @@ public class FileEditingScreen extends Screen {
     }
 
     public boolean isFileEditingScreenDisplayed() {
-        state().waitForDisplayed(Duration.ofSeconds(30));
         return state().isDisplayed();
     }
 
-    public void addText(String text){
+    public void addTextInDirectEditor(String text){
         directEditor.sendKeys(text);
     }
 

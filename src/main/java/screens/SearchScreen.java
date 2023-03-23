@@ -20,7 +20,6 @@ public class SearchScreen extends Screen {
     }
 
     public List<String> getTitleFromDocuments() {
-        state().waitForClickable(Duration.ofSeconds(5));
         List<String> titlesList = new ArrayList<>();
         if (!elementsInRecycler.isEmpty()) {
             elementsInRecycler.forEach(element -> {

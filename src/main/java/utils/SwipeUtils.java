@@ -1,12 +1,10 @@
 package utils;
 
-import static aquality.appium.mobile.application.AqualityServices.getApplication;
-import static aquality.appium.mobile.application.AqualityServices.getTouchActions;
-
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 
 import aquality.appium.mobile.actions.SwipeDirection;
+import aquality.appium.mobile.application.AqualityServices;
 import aquality.appium.mobile.elements.actions.ElementTouchActions;
 import aquality.appium.mobile.elements.interfaces.IElement;
 
@@ -18,7 +16,7 @@ public class SwipeUtils {
     }
 
     public static void swipeWithDirection(SwipeDirection direction) {
-        Dimension size = getApplication().getDriver().manage().window().getSize();
+        Dimension size = AqualityServices.getApplication().getDriver().manage().window().getSize();
         int startX;
         int endX;
         int startY;
@@ -53,6 +51,6 @@ public class SwipeUtils {
         }
         Point startPoint = new Point(startX, startY);
         Point endPoint = new Point(endX, endY);
-        getTouchActions().swipeWithLongPress(startPoint, endPoint);
+        AqualityServices.getTouchActions().swipeWithLongPress(startPoint, endPoint);
     }
 }

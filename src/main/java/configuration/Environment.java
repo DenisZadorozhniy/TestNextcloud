@@ -12,9 +12,9 @@ class Environment {
     private Environment() {
     }
 
-    static ISettingsFile getCurrentData() {
+    static ISettingsFile getCurrentData(String fileName) {
         String envName = (String) AqualityServices.get(ISettingsFile.class).getValue("/data");
-        Path resourcePath = Paths.get( envName, "data.json");
+        Path resourcePath = Paths.get( envName, fileName);
         return new JsonSettingsFile(resourcePath.toString());
     }
 }

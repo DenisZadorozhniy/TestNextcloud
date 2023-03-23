@@ -1,5 +1,3 @@
-import static utils.StringUtils.generateRandomWord;
-
 import org.junit.jupiter.api.Test;
 
 import configuration.Configuration;
@@ -7,6 +5,7 @@ import steps.FileEditingScreenSteps;
 import steps.MainScreenSteps;
 import steps.SearchScreenSteps;
 import steps.TextDocumentScreenSteps;
+import utils.StringUtils;
 
 public class NextCloudTest extends BaseTest {
 
@@ -24,8 +23,8 @@ public class NextCloudTest extends BaseTest {
 
     @Test
     public void firstTest() {
-        String randomTitle = generateRandomWord(8);
-        String randomText = generateRandomWord(12);
+        String randomTitle = StringUtils.generateRandomWord(8);
+        String randomText = StringUtils.generateRandomWord(12);
 
         mainScreenSteps.clickCancelInAlert();
 
@@ -47,8 +46,8 @@ public class NextCloudTest extends BaseTest {
 
     @Test
     public void secondTest(){
-        String randomTitle = generateRandomWord(8);
-        String randomText = generateRandomWord(12);
+        String randomTitle = StringUtils.generateRandomWord(8);
+        String randomText = StringUtils.generateRandomWord(12);
 
         mainScreenSteps.clickCancelInAlert();
 

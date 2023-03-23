@@ -1,7 +1,5 @@
 package screens.forms;
 
-import static utils.SwipeUtils.makeSwipe;
-
 import org.openqa.selenium.By;
 
 import java.time.Duration;
@@ -10,6 +8,7 @@ import aquality.appium.mobile.actions.SwipeDirection;
 import aquality.appium.mobile.elements.interfaces.IButton;
 import aquality.appium.mobile.elements.interfaces.ILabel;
 import aquality.appium.mobile.screens.Screen;
+import utils.SwipeUtils;
 
 public class AddFileForm extends Screen {
 
@@ -29,7 +28,7 @@ public class AddFileForm extends Screen {
     }
 
     public void clickCreateNewTextDocumentButton(){
-        makeSwipe(createNewTextDocumentButton, SwipeDirection.DOWN);
+        SwipeUtils.makeSwipe(createNewTextDocumentButton, SwipeDirection.DOWN);
         createNewTextDocumentButton.click();
     }
 

@@ -1,9 +1,5 @@
 package steps;
 
-import static utils.AlertManager.dismissAlert;
-import static utils.StringUtils.getLastNumber;
-import static utils.SwipeUtils.swipeWithDirection;
-
 import org.junit.jupiter.api.Assertions;
 
 import java.time.Duration;
@@ -12,7 +8,9 @@ import java.util.stream.Collectors;
 
 import aquality.appium.mobile.actions.SwipeDirection;
 import screens.MainScreen;
+import utils.AlertManager;
 import utils.StringUtils;
+import utils.SwipeUtils;
 
 public class MainScreenSteps {
 
@@ -31,7 +29,7 @@ public class MainScreenSteps {
     }
 
     public void clickCancelInAlert() {
-        dismissAlert();
+        AlertManager.dismissAlert();
     }
 
     public void addTitleDocument(String titleDocument) {
@@ -57,7 +55,7 @@ public class MainScreenSteps {
     }
 
     public void clickOverflowMenu(String titleDocument) {
-        Integer lastNumber = getLastNumber(mainScreen.getFilenameLocator(titleDocument).toString());
+        Integer lastNumber = StringUtils.getLastNumber(mainScreen.getFilenameLocator(titleDocument).toString());
         mainScreen.clickMoreMenu(lastNumber);
     }
 
@@ -67,11 +65,11 @@ public class MainScreenSteps {
     }
 
     public void updateScreen() {
-        swipeWithDirection(SwipeDirection.UP);
+        SwipeUtils.swipeWithDirection(SwipeDirection.UP);
     }
 
     public void clickFile(String titleDocument) {
-        Integer lastNumber = getLastNumber(mainScreen.getFilenameLocator(titleDocument).toString());
+        Integer lastNumber = StringUtils.getLastNumber(mainScreen.getFilenameLocator(titleDocument).toString());
         mainScreen.clickOnParticularDocument(lastNumber);
     }
 
