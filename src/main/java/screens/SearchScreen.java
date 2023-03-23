@@ -1,10 +1,8 @@
 package screens;
 
 import org.openqa.selenium.By;
-
-import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import aquality.appium.mobile.elements.interfaces.ITextBox;
 import aquality.appium.mobile.screens.Screen;
@@ -20,13 +18,8 @@ public class SearchScreen extends Screen {
     }
 
     public List<String> getTitleFromDocuments() {
-        List<String> titlesList = new ArrayList<>();
-        if (!elementsInRecycler.isEmpty()) {
-            elementsInRecycler.forEach(element -> {
-                String text = element.getText();
-                titlesList.add(text);
-            });
-        }
-        return titlesList;
+        return elementsInRecycler.stream()
+                .map(ITextBox::getText)
+                .collect(Collectors.toList());
     }
 }

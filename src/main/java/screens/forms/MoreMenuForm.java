@@ -17,7 +17,9 @@ public class MoreMenuForm extends Screen {
     }
 
     public void clickDeleteButton(){
-        SwipeUtils.makeSwipe(deleteButton,SwipeDirection.DOWN);
+        if (deleteButton.state().isDisplayed()){
+            SwipeUtils.makeSwipe(deleteButton,SwipeDirection.DOWN);
+        }
         deleteButton.click();
     }
 }
