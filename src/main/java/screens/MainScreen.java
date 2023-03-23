@@ -71,13 +71,11 @@ public class MainScreen extends Screen {
     }
 
     public By getFilenameLocator(String titleDocument) {
-        AtomicReference<ITextBox> doc = new AtomicReference<>(null);
-        elementsInRecycler.forEach(el -> {
-            String text = StringUtils.extractTextBeforeDotOrColon(el.getText());
-            if (text.equals(titleDocument)) {
-                doc.set(el);
-            }
-        });
+         AtomicReference<ITextBox> doc = new AtomicReference<>(null);
+        elementsInRecycler.stream()
+                .filter(el -> StringUtils.extractTextBeforeDotOrColon(el.getText()).equals(titleDocument))
+                .findFirst()
+                .ifPresent(doc::set);
         return doc.get().getLocator();
     }
 

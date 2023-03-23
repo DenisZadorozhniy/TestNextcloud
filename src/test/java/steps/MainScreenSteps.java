@@ -40,18 +40,20 @@ public class MainScreenSteps {
         mainScreen.getAddFileForm().clickCreateDocumentButton();
     }
 
-    public void isDocumentPresent(String titleDocument, boolean expectedPresence) {
-        mainScreen.state().waitForClickable(Duration.ofSeconds(7));
+    public void isDocumentPresent(String titleDocument) {
         List<String> titles = mainScreen.getTitleFromDocuments().stream()
                 .map(StringUtils::extractTextBeforeDotOrColon)
                 .collect(Collectors.toList());
-        if (expectedPresence) {
-            Assertions.assertTrue(titles.contains(titleDocument),
-                    String.format("The '%s' file must be present in the list of files.", titleDocument));
-        } else {
-            Assertions.assertFalse(titles.contains(titleDocument),
-                    String.format("The '%s' file must be not present in the list of files.", titleDocument));
-        }
+        Assertions.assertTrue(titles.contains(titleDocument),
+                String.format("The '%s' file must be present in the list of files.", titleDocument));
+    }
+
+    public void isDocumentAbsent(String titleDocument) {
+        List<String> titles = mainScreen.getTitleFromDocuments().stream()
+                .map(StringUtils::extractTextBeforeDotOrColon)
+                .collect(Collectors.toList());
+        Assertions.assertFalse(titles.contains(titleDocument),
+                String.format("The '%s' file must be not present in the list of files.", titleDocument));
     }
 
     public void clickOverflowMenu(String titleDocument) {

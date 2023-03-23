@@ -10,6 +10,11 @@ import aquality.appium.mobile.elements.interfaces.IElement;
 
 public class SwipeUtils {
 
+    private static final int TWO_NUMBER = 2;
+    private static final double POINT_TWO = 0.2;
+    private static final double POINT_EIGHT = 0.8;
+    private static final double POINT_NINE = 0.9;
+
     public static void makeSwipe(IElement element, SwipeDirection swipeDirection) {
         ElementTouchActions elementTouchActions = new ElementTouchActions(element);
         elementTouchActions.scrollToElement(swipeDirection);
@@ -23,28 +28,28 @@ public class SwipeUtils {
         int endY;
         switch (direction) {
             case UP:
-                startX = size.width / 2;
+                startX = size.width / TWO_NUMBER;
                 endX = startX;
-                startY = (int) (size.height * 0.8);
-                endY = (int) (size.height * 0.2);
+                startY = (int) (size.height * POINT_EIGHT);
+                endY = (int) (size.height * POINT_TWO);
                 break;
             case DOWN:
-                startX = size.width / 2;
+                startX = size.width / TWO_NUMBER;
                 endX = startX;
-                startY = (int) (size.height * 0.2);
-                endY = (int) (size.height * 0.8);
+                startY = (int) (size.height * POINT_TWO);
+                endY = (int) (size.height * POINT_EIGHT);
                 break;
             case LEFT:
-                startY = size.height / 2;
+                startY = size.height / TWO_NUMBER;
                 endY = startY;
-                startX = (int) (size.width * 0.8);
-                endX = (int) (size.width * 0.2);
+                startX = (int) (size.width * POINT_EIGHT);
+                endX = (int) (size.width * POINT_TWO);
                 break;
             case RIGHT:
-                startY = size.height / 2;
+                startY = size.height / TWO_NUMBER;
                 endY = startY;
-                startX = (int) (size.width * 0.9);
-                endX = (int) (size.width * 0.2);
+                startX = (int) (size.width * POINT_NINE);
+                endX = (int) (size.width * POINT_TWO);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid swipe direction specified: " + direction);

@@ -38,7 +38,7 @@ public class NextCloudTest extends BaseTest {
 
         fileEditingScreenSteps.writeText(randomText);
         fileEditingScreenSteps.clickCloseButton();
-        mainScreenSteps.isDocumentPresent(randomTitle,true);
+        mainScreenSteps.isDocumentPresent(randomTitle);
 
         mainScreenSteps.clickOverflowMenu(randomTitle);
         mainScreenSteps.deleteDocument();
@@ -61,14 +61,14 @@ public class NextCloudTest extends BaseTest {
 
         fileEditingScreenSteps.writeText(randomText);
         fileEditingScreenSteps.clickCloseButton();
-        mainScreenSteps.isDocumentPresent(randomTitle,true);
+        mainScreenSteps.isDocumentPresent(randomTitle);
 
         mainScreenSteps.clickOverflowMenu(randomTitle);
         mainScreenSteps.deleteDocument();
-        mainScreenSteps.isDocumentPresent(randomTitle,false);
+        mainScreenSteps.isDocumentAbsent(randomTitle);
 
         mainScreenSteps.updateScreen();
-        mainScreenSteps.isDocumentPresent(randomTitle,false);
+        mainScreenSteps.isDocumentAbsent(randomTitle);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class NextCloudTest extends BaseTest {
         String description = Configuration.getProperties("description");
 
         mainScreenSteps.clickCancelInAlert();
-        mainScreenSteps.isDocumentPresent(titleFile,true);
+        mainScreenSteps.isDocumentPresent(titleFile);
 
         mainScreenSteps.clickFile(titleFile);
         fileEditingScreenSteps.checkTextInEditText(description);
@@ -89,7 +89,7 @@ public class NextCloudTest extends BaseTest {
         String titleFile = Configuration.getProperties("titleFile");
 
         mainScreenSteps.clickCancelInAlert();
-        mainScreenSteps.isDocumentPresent(titleFile,true);
+        mainScreenSteps.isDocumentPresent(titleFile);
 
         mainScreenSteps.searchDocument(titleFile);
         searchScreenSteps.checkDocumentPresent(titleFile);

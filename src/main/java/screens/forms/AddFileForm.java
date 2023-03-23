@@ -18,10 +18,7 @@ public class AddFileForm extends Screen {
 
     public AddFileForm() {
         super(By.id("com.nextcloud.client:id/design_bottom_sheet"), "Add file form");
-        this.createNewTextDocumentButton = getElementFactory().getButton((By.xpath("/hierarchy/android.widget." +
-                        "FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android." +
-                        "widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android." +
-                        "widget.LinearLayout/android.widget.LinearLayout[7]/android.widget.LinearLayout/android.widget.LinearLayout[4]")),
+        this.createNewTextDocumentButton = getElementFactory().getButton((By.xpath("//android.widget.LinearLayout[4]")),
                 "Create new text document button");
         this.textField = getElementFactory().getLabel(By.id("com.nextcloud.client:id/filename"),"Text field");
         this.createDocumentButton = getElementFactory().getButton(By.id("android:id/button1"),"Create document button");
